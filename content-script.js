@@ -57,7 +57,9 @@ const serialize = async (data) => {
 
   // バイナリ文字列とかいう馬鹿が考えた仕様なんとかしてくれ……
   // arrayBuffer -> binary_string
-  const binary_string = String.fromCharCode (... new Uint8Array (arrayBuffer))
+  // const binary_string = String.fromCharCode (... new Uint8Array (arrayBuffer))
+  // ↑だとダメでした #1
+  const binary_string = [... new Uint8Array (arrayBuffer)].map ((c) => String.fromCharCode (c)).join ('')
 
   // binary_string -> base64
   return btoa (binary_string)
