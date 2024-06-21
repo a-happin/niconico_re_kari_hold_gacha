@@ -30,3 +30,10 @@ localStorage.removeItem ('re_kari_gacha')
 - localStorageはそんなに容量が多くないらしいのでいっぱいになるかも？
 - ガチャしまくると重くなる可能性**大**
 - エラーが出たら諦めてください
+
+## 不具合
+644個ぐらいデータを読み込むと
+```
+RangeError: Maximum call stack size exceeded
+```
+が発生してそれ以上保存できなくなるみたいです。残念。
