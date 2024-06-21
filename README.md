@@ -9,7 +9,7 @@
 > [!important]
 > 導入は自己責任でお願いします
 
-1. `chrome://extension`を開く
+1. `chrome://extensions`を開く
 1. 開発者モードにする
 1. [Releases](https://github.com/a-happin/niconico_re_kari_hold_gacha/releases)から`niconico_re_kari_hold_gacha.zip`をダウンロードして展開して出てきたフォルダをドラッグアンドドロップでブラウザに入れる。
 1. インストールし終わったら開発者モードは解除する
@@ -27,5 +27,6 @@ localStorage.removeItem ('re_kari_gacha')
 
 ## 中身
 - ガチャ結果を取得してデータをlocalStorageに圧縮して保存してます
+- localStorageはそんなに容量が多くないらしいのでいっぱいになるかも？
 - ガチャしまくると重くなる可能性**大**
 - エラーが出たら諦めてください
