@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ニコニコ動画(Re:仮)用 ガチャ結果保持",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "ニコニコ動画(Re:仮)のガチャで引いた動画を保持し続ける",
   "content_scripts": [
     {
