@@ -125,7 +125,7 @@ const insert_gacha_data = async () => {
       return
     }
   }
-  div.querySelector ('p').textContent = `保持したガチャデータ: ${localStorage.getItem (STORAGE_KEY)?.length ?? 0} bytes`
+  div.querySelector ('p').textContent = `保持した動画数: ${Object.keys (storage).length}`
 
   // 一旦削除
   document.querySelector ('ul[class*="hold_gacha"]')?.remove ()
