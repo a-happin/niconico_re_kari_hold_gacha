@@ -23,10 +23,6 @@ const waitForElement = (selectors) => new Promise ((resolve, reject) => {
           if (node instanceof Element)
           {
             res.push (... node.querySelectorAll (selectors))
-            // for (const e of node.querySelectorAll (selectors))
-            // {
-            //   res.push (e)
-            // }
           }
         }
       }
@@ -55,7 +51,6 @@ const serialize = async (data) => {
   // json -> arrayBuffer
   const arrayBuffer = await new Response (new Blob ([JSON.stringify (data)]).stream ().pipeThrough (new CompressionStream ('deflate-raw'))).arrayBuffer ()
 
-  // バイナリ文字列とかいう馬鹿が考えた仕様なんとかしてくれ……
   // arrayBuffer -> binary_string
   // const binary_string = String.fromCharCode (... new Uint8Array (arrayBuffer))
   // ↑だとダメでした #1
@@ -113,7 +108,7 @@ const insert_gacha_data = async () => {
     div = gacha_button.insertAdjacentElement ('afterend', createElement ('div', (div) => {
       div.id = 'hold_gacha_div'
       div.style = 'margin: 16px;'
-      div.append (createElement ('p', (p) => {})) //p.append (`保持したガチャデータ: ${localStorage.getItem (STORAGE_KEY)?.length ?? 0} bytes`)))
+      div.append (createElement ('p', (_p) => {}))
       div.append (createElement ('button', (button) => {
         button.append ('ガチャデータを消去する')
         button.style = `cursor: pointer; border-width: 1px; border-radius: 4px; padding: 4px;`
