@@ -78,14 +78,10 @@ const deserialize = async (str) => {
   return await new Response (new Blob ([arrayBuffer]).stream ().pipeThrough (new DecompressionStream ('deflate-raw'))).json ()
 }
 
-/** @type {() => Promise <{[k in string]: {html: string}}>} */
+/** @type {() => Promise <{[k in string]: {html: string}} | undefined>} */
 const load_gacha_data = async () => {
   const data_str = localStorage.getItem (STORAGE_KEY)
-  if (data_str == null)
-  {
-    return {}
-  }
-  else
+  if (data_str != null)
   {
     return await deserialize (data_str)
   }
@@ -98,7 +94,7 @@ const save_gacha_data = async (data) => {
 
 const insert_gacha_data = async () => {
   // 先にロードする
-  const storage = await load_gacha_data ()
+  const storage = await load_gacha_data () ?? {}
 
   // メタデータ的な
   let div = document.querySelector ('div#hold_gacha_div')
@@ -108,7 +104,7 @@ const insert_gacha_data = async () => {
     div = gacha_button.insertAdjacentElement ('afterend', createElement ('div', (div) => {
       div.id = 'hold_gacha_div'
       div.style = 'margin: 16px;'
-      div.append (createElement ('p', (_p) => {}))
+      div.append (createElement ('p', (p) => {}))
       div.append (createElement ('button', (button) => {
         button.append ('ガチャデータを消去する')
         button.style = `cursor: pointer; border-width: 1px; border-radius: 4px; padding: 4px;`
