@@ -27,6 +27,6 @@ localStorage.removeItem ('re_kari_gacha')
 
 ## 中身
 - ガチャ結果を取得してデータをlocalStorageに圧縮して保存してます
-- localStorageはそんなに容量が多くないらしいのでいっぱいになるかも？
+- ~~localStorageはそんなに容量が多くないらしいのでいっぱいになるかも？~~
 - ガチャしまくると重くなる可能性**大**
 - エラーが出たら諦めてください
