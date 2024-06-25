@@ -11,8 +11,6 @@ const waitForElement = (selectors) => new Promise ((resolve, reject) => {
   }
 
   const observer = new MutationObserver ((mutations, observer) => {
-    observer.disconnect ()
-
     const res = []
     for (const mutation of mutations)
     {
@@ -22,18 +20,19 @@ const waitForElement = (selectors) => new Promise ((resolve, reject) => {
         {
           if (node instanceof Element)
           {
+            if (node.matches (selectors))
+            {
+              res.push (node)
+            }
             res.push (... node.querySelectorAll (selectors))
           }
         }
       }
     }
 
-    if (res.length === 0)
+    if (res.length > 0)
     {
-      observer.observe (document, {childList: true, subtree: true})
-    }
-    else
-    {
+      observer.disconnect ()
       resolve (res)
     }
   })
@@ -150,7 +149,7 @@ const insert_gacha_data = async () => {
 
 window.addEventListener ('DOMContentLoaded', async () => {
   // なぜかここのawaitが必須。なんでやねん
-  await insert_gacha_data ()
+  insert_gacha_data ()
 
   // ガチャを検知する
   const ul = (await waitForElement (`ul.d_flex.flex-wrap_wrap.justify_center.gap_16px:not([class*="hold_gacha"])`))[0]
