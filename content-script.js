@@ -122,17 +122,18 @@ const insert_gacha_data = async () => {
   }
   div.querySelector ('p').textContent = `保持した動画数: ${Object.keys (storage).length}`
 
-  // 一旦削除
-  document.querySelector ('ul[class*="hold_gacha"]')?.remove ()
-
-  // ガチャ結果を挿入
-  div.insertAdjacentElement ('afterend', createElement ('ul', (ul) => {
+  // 保持中の動画表示領域
+  const ul = document.querySelector ('ul[class*="hold_gacha"]') ?? div.insertAdjacentElement ('afterend', createElement ('ul', (ul) => {
     ul.classList.add (... `d_flex flex-wrap_wrap justify_center gap_16px hold_gacha`.split (' '))
-    for (const e of Object.values (storage))
-    {
-      ul.append (createElement ('li', (li) => li.insertAdjacentHTML ('beforeend', e.html)))
-    }
   }))
+
+  if (ul == null)
+  {
+    console.error (`ガチャ保持: DOMの変更に失敗しました`)
+    return
+  }
+
+  ul.replaceChildren (... Object.values (storage).map ((a) => createElement ('li', (li) => li.insertAdjacentHTML ('beforeend', a.html))))
 
   await add_new_gacha_data ()
 }
