@@ -134,8 +134,13 @@ const insert_gacha_data = async () => {
     }
   }))
 
-  // new gacha data
-  for (const a of await waitForElement (`ul:not([class*="hold_gacha"]) a[href*="/watch_tmp/"]`))
+  await add_new_gacha_data ()
+}
+
+const add_new_gacha_data = async () => {
+  const new_gacha_elements = await waitForElement (`ul:not([class*="hold_gacha"]) a[href*="/watch_tmp/"]`)
+  const storage = await load_gacha_data () ?? {}
+  for (const a of new_gacha_elements)
   {
     const res = /\/watch_tmp\/(\w+)/.exec (a.href)
     if (res != null && res[1] != null)
