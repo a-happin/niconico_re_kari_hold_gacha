@@ -154,7 +154,6 @@ const add_new_gacha_data = async () => {
 }
 
 window.addEventListener ('DOMContentLoaded', async () => {
-  // なぜかここのawaitが必須。なんでやねん
   insert_gacha_data ()
 
   // ガチャを検知する
