@@ -154,6 +154,7 @@ const insert_gacha_data = async () => {
           button.style.cursor = 'pointer'
           button.style.borderWidth = '1px'
           button.style.borderRadius = '4px'
+          button.style.borderColor = 'red'
           button.style.padding = '4px'
           button.onclick = () => {
             localStorage.removeItem (STORAGE_KEY)
